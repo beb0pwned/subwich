@@ -1,4 +1,4 @@
 ## Subwich
 Subdomain enumeration tool
 
-#### Usage: ./subwich <domain>
+#### Usage: `./subwich <domain>` 
