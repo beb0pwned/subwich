@@ -11,9 +11,13 @@ if [ ! -d "$url" ];then
         mkdir $url
 fi
 
- if [ ! -d "$url/wayback/extensions" ];then
+if [! -d "$url/wayback"];then
+        mkdir $url/wayback
+fi
+
+if [ ! -d "$url/wayback/extensions" ];then
         mkdir $url/wayback/extensions
-    fi
+fi
 
 echo "[+] Harvesting subdomains with subfinder..."
 sudo subfinder -d $url >> $url/subs1.txt
