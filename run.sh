@@ -46,11 +46,11 @@ echo "[+] Scraping wayback data..."
 cat $url/final.txt | waybackurls | tee -a $url/wayback/wayback.txt
 
 echo "[+] Pulling and compiling all params found in wayback data..."
-cat $url/wayback.txt | grep '?*=' | cut -d "=" -f 1 | sort -u >> $url/wayback/wayback_params.txt
-for line in $(cat $url/wayback_params.txt); do echo $line'=';done
+cat $url/wayback/wayback.txt | grep '?*=' | cut -d "=" -f 1 | sort -u >> $url/wayback/wayback_params.txt
+for line in $(cat $url/wayback/wayback_params.txt); do echo $line'=';done
 
 echo "[+] Pulling and compiling js/php/aspx/jsp/json files from wayback output..."
-or line in $(cat $url/wayback/wayback.txt);do
+for line in $(cat $url/wayback/wayback.txt);do
         ext="${line##*.}"
         if [[ "$ext" == "js" ]]; then
             echo $line | sort -u | tee -a  $url/wayback/extensions/js.txt
