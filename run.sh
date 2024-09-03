@@ -39,7 +39,7 @@ if [ ! -f "$url/potential_takeovers.txt" ];then
         touch $url/potential_takeovers.txt
 fi
  
-subjack -w $url/final.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 -o $url/potential_takeovers.txt
+subjack -w $url/final.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 >> $url/potential_takeovers.txt
 
 
 echo "[+] Scraping wayback data..."
