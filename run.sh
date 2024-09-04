@@ -71,7 +71,7 @@ rm $url/subs2.txt
 
 echo "[+] Probing for alive domains with httpx..."
 cat $url/final.txt | httpx -sc -td -ip >> $url/alive.txt
-cat $url/alive.txt | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' >> ips.txt
+cat $url/alive.txt | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' >> $url/ips.txt
 
 echo "[+] Checking for possible subdomain takeover..."
 
