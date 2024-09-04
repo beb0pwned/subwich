@@ -51,7 +51,7 @@ if [ ! -d "$url" ];then
         mkdir $url
 fi
 
-while getopt 'w' OPTION; do
+while getopts 'w' OPTION; do
         case "$OPTION" in
                 w)
                         wayback
