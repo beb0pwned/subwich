@@ -69,7 +69,7 @@ subjack -w $url/final.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerpr
 
 
 echo "[+] Scraping wayback data..."
-cat $url/final.txt | waybackurls | tee -a $url/wayback/wayback.txt
+cat $url/final.txt | waybackurls >> $url/wayback/wayback.txt
 
 echo "[+] Pulling and compiling all params found in wayback data..."
 cat $url/wayback/wayback.txt | grep '?*=' | cut -d "=" -f 1 | sort -u >> $url/wayback/wayback_params.txt
