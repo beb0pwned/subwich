@@ -60,7 +60,7 @@ fi
 subjack -w $url/final.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 >> $url/potential_takeovers.txt
 
 
-if [ ! -d "$url/wayback"];then
+if [ ! -d "$url/wayback" ];then
 mkdir $url/wayback
 fi
 
