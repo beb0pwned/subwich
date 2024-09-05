@@ -37,14 +37,6 @@ while getopts 'h' OPTION; do
 done
 
 
-if [! -d "$url/wayback"];then
-mkdir $url/wayback
-fi
-
-if [ ! -d "$url/wayback/extensions" ];then
-        mkdir $url/wayback/extensions
-fi
-
 echo "[+] Harvesting subdomains with subfinder..."
 sudo subfinder -d $url >> $url/subs1.txt
 cat $url/subs1.txt | grep $1 >> $url/final.txt
@@ -67,6 +59,14 @@ fi
  
 subjack -w $url/final.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 >> $url/potential_takeovers.txt
 
+
+if [ ! -d "$url/wayback"];then
+mkdir $url/wayback
+fi
+
+if [ ! -d "$url/wayback/extensions" ];then
+        mkdir $url/wayback/extensions
+fi
 
 echo "[+] Scraping wayback data..."
 cat $url/final.txt | waybackurls >> $url/wayback/wayback.txt
