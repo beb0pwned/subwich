@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 echo "
 ╔═╗┬ ┬┌┐ ┬ ┬┬┌─┐┬ ┬
 ╚═╗│ │├┴┐│││││  ├─┤
@@ -46,15 +44,32 @@ wayback() {
         done
 }
 
+help() {
+        echo "
+╔═╗┬ ┬┌┐ ┬ ┬┬┌─┐┬ ┬
+╚═╗│ │├┴┐│││││  ├─┤
+╚═╝└─┘└─┘└┴┘┴└─┘┴ ┴ "
+echo ""
+echo "Usage: ./run.sh <domain>"
+echo ""
+echo "-h        Displays this help message"
+echo ""
+echo "-w       Scrapes WaybackURLs"
+
+}
+
 
 if [ ! -d "$url" ];then
         mkdir $url
 fi
 
-while getopts 'w' OPTION; do
+while getopts 'wh' OPTION; do
         case "$OPTION" in
                 w)
                         wayback
+                        ;;
+                h)
+                        help
                         ;;
         esac
 done
