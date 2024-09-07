@@ -10,10 +10,6 @@ url=$1
 help() {
 
 clear
-        echo "
-╔═╗┬ ┬┌┐ ┬ ┬┬┌─┐┬ ┬
-╚═╗│ │├┴┐│││││  ├─┤
-╚═╝└─┘└─┘└┴┘┴└─┘┴ ┴ "
 echo ""
 echo "Usage: ./run.sh <domain>"
 echo ""
