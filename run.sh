@@ -56,8 +56,8 @@ echo "[+] Probing for alive domains with httpx..."
 cat $url/final.txt | httpx -sc -td -ip >> $url/alive.txt
 cat $url/alive.txt | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' >> $url/ips.txt
 
-cat $url/alive.txt | sed -n 's/.*\[\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\].*/\1/p' > ips_alive.txt
-cat $url/alive.txt | sed 's|https\?://\([^ ]*\).*|\1|' > domains_alive.txt
+cat $url/alive.txt | sed -n 's/.*\[\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\].*/\1/p' > $url/ips_alive.txt
+cat $url/alive.txt | sed 's|https\?://\([^ ]*\).*|\1|' > $url/domains_alive.txt
 
 echo "[+] Checking for possible subdomain takeover..."
 
