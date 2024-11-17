@@ -1,3 +1,4 @@
+#TODO: Add -isubs flag that checks for important subdomains; 
 import sys
 import os
 import subprocess
@@ -29,7 +30,7 @@ def banner():
 
 def help():
     banner()
-    print("\nUsage python3 subwich.py -u <domain>")
+    print("\nUsage python3 subwich.py -d <domain>")
     print("\nOptions:")
     print("  -d, --domain <domain>  Specify the target domain")
     print("  -w           Scrape WaybackURLs")
