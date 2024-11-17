@@ -30,7 +30,7 @@ def banner():
 
 def help():
     banner()
-    print("\nUsage python3 subwich.py -d <domain>")
+    print("\nUsage: python3 subwich.py -d <domain>")
     print("\nOptions:")
     print("  -d, --domain <domain>  Specify the target domain")
     print("  -w           Scrape WaybackURLs")
