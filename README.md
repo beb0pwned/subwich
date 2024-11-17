@@ -5,6 +5,8 @@ Subdomain enumeration tool
 Automate recon for bug bounties
 - Note: Please ensure that Go is properly installed on your system for this tool to function correctly.
 
+## Installation
+- `python3 install.py`
 
 ## Usage
 Note: Must be in the format of "domain.com" or "this.domain.com" etc..
