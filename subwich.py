@@ -47,7 +47,6 @@ def main():
     parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
     parser.add_argument("-u", "--url", help="Target domain")
     parser.add_argument("-w", action='store_true', help="Scrape WaybackURLs")
-    parser.add_argument("-h", action='store_true', help="Display help")
     args = parser.parse_args()
 
     # Display help if no domain is provided or -h flag is used
