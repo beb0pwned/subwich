@@ -127,7 +127,7 @@ def main():
         print(f"{BOLD_GREEN}\n[+] Reconnaissance complete!{RESET}")
 
     except KeyboardInterrupt:
-        print(f'{BOLD_RED}Installation interrupted by user.{RESET}')
+        print(f'\n{BOLD_RED}Installation interrupted by user.{RESET}')
 
     except Exception as e:
         print(f'{RED}An error occured: {e}{RESET}')
