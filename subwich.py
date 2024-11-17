@@ -15,16 +15,18 @@ RESET = "\033[0m"
 BOLD_GREEN = "\033[1;92m"
 BOLD_RED = "\033[1;91m"
 
-banner = f"""{RED}
+def banner():
+    print(f"""{RED}
 ╔═╗┬ ┬┌┐ ┬ ┬┬┌─┐┬ ┬
 ╚═╗│ │├┴┐│││││  ├─┤
 ╚═╝└─┘└─┘└┴┘┴└─┘┴ ┴ {RESET}
                     V2.0
 {TEAL}by beb0pwned{RESET}
 """
+    )
 
 def help():
-    print(banner)
+    banner()
     print("\nUsage python3 subwich.py -u <domain>")
     print("\nOptions:")
     print("  -d, --domain <domain>  Specify the target domain")
