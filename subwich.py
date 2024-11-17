@@ -27,7 +27,7 @@ def help():
     print(banner)
     print("\nUsage python3 subwich.py -u <domain>")
     print("\nOptions:")
-    print("  -u, --url <domain>  Specify the target domain")
+    print("  -d, --domain <domain>  Specify the target domain")
     print("  -w           Scrape WaybackURLs")
     print("  -h           Displays this help message\n")
 
@@ -45,17 +45,18 @@ def run_command(command):
 
 def main():
     parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
-    parser.add_argument("-u", "--url", help="Target domain")
+    parser.add_argument("-d", "--domain", help="Target domain")
     parser.add_argument("-w", action='store_true', help="Scrape WaybackURLs")
     args = parser.parse_args()
 
     # Display help if no domain is provided or -h flag is used
-    if args.h or not args.url:
+    if not args.domain:
+        print(f"{BOLD_RED}Please provide a domain.")
         help()
         sys.exit(1)
 
     banner()
-    url = args.url
+    url = args.domain
 
     # Create necessary directories
     create_dir(url)
