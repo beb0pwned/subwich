@@ -98,7 +98,7 @@ def main():
             domains = run_command(f"cat {url}/alive.txt | sed 's|https\\?://\\([^ ]*\\).*|\\1|'")
             domain_file.write(domains)
 
-        print(f"{BOLD_TEAL}[+] Checking for possible subdomain takeover...{RESET}")
+        print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
         run_command(f"subjack -w {url}/final.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 > {url}/potential_takeovers.txt")
 
         if args.w:
@@ -107,13 +107,13 @@ def main():
             with open(f"{url}/wayback/wayback.txt", 'w') as f:
                 f.write(wayback_output)
 
-            print(f"{BOLD_TEAL}[+] Extracting parameters from wayback data...{RESET}")
+            print(f"[+]     Extracting parameters from wayback data...")
             wayback_params = run_command(f"cat {url}/wayback/wayback.txt | grep '?*=' | cut -d '=' -f 1 | sort -u")
             with open(f"{url}/wayback/wayback_params.txt", 'w') as f:
                 for line in wayback_params.splitlines():
                     f.write(line + '=\n')
 
-            print(f"{BOLD_TEAL}[+] Extracting files with specific extensions...{RESET}")
+            print(f"[+]     Extracting files with specific extensions...")
             with open(f"{url}/wayback/wayback.txt", 'r') as wayback_file:
                 for line in wayback_file:
                     line = line.strip()
@@ -125,7 +125,7 @@ def main():
         print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
         run_command(f"nmap -oA {url}/nmap -iL {url}/ips.txt -T4 ")
 
-        print(f"{BOLD_GREEN}\n[+] Reconnaissance complete!{RESET}")
+        print(f"{BOLD_ORANGE}[+] Reconnaissance complete!{RESET}")
 
     except KeyboardInterrupt:
         print(f'\n{BOLD_RED}Installation interrupted by user.{RESET}')
