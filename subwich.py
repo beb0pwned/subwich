@@ -14,7 +14,7 @@ BOLD_ORANGE = "\033[1;93m"
 RESET = "\033[0m"
 BOLD_GREEN = "\033[1;92m"
 BOLD_RED = "\033[1;91m"
-BOLD_MAGENTA = "\033[1;95m]"
+BOLD_MAGENTA = "\033[1;95m"
 BOLD_TEAL = "\033[1;96m"
 
 def banner():
