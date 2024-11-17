@@ -49,7 +49,7 @@ def install_tools():
     for tool in snap_tools:
         print(f"{GREEN}Installing {tool} with snap.{RESET}")
         os.system(f'snap install {tool}')
-        
+
     # Download tools that need Go to download
     print(f"\n{BOLD_GREEN}Installing tools using go...{RESET}\n")
     for tool in go_tools:
@@ -67,3 +67,15 @@ def install_tools():
             print(f'{GREEN}{tool_name} downloaded successfully.{RESET}\n')
         else:
             print(f'{BOLD_RED}Failed to download {tool_name}: {result.stderr}{RESET}\n')
+
+def main():
+    try:
+        install_tools()
+    except KeyboardInterrupt:
+        print(f'{BOLD_RED}User stopped installation.\n\nExitting...{RESET}')
+    except Exception as e:
+        print(f'\n{BOLD_RED}Error:{RESET} {e}')
+
+
+if __name__ == "__main__":
+    main()
