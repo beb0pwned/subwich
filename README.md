@@ -1,7 +1,10 @@
 # ![image](https://github.com/user-attachments/assets/95867237-f92b-464d-a70b-bae0abbb3cf7)
-
-
 Subdomain enumeration tool
+
+## About
+Automate recon for bug bounties
+- Note: Please ensure that Go is properly installed on your system for this tool to function correctly.
+
 
 ## Usage
 Note: Must be in the format of "domain.com" or "this.domain.com" etc..
