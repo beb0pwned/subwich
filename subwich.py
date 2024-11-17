@@ -125,7 +125,7 @@ def main():
         print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
         run_command(f"nmap -oA {url}/nmap -iL {url}/ips.txt -T4 ")
 
-        print(f"{BOLD_ORANGE}[+] Reconnaissance complete!{RESET}")
+        print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
     except KeyboardInterrupt:
         print(f'\n{BOLD_RED}Installation interrupted by user.{RESET}')
