@@ -23,7 +23,7 @@ def banner():
 ╚═╗│ │├┴┐│││││  ├─┤
 ╚═╝└─┘└─┘└┴┘┴└─┘┴ ┴ {RESET}
                     V2.0
-{TEAL}by beb0pwned{RESET}
+{BOLD_MAGENTA}by beb0pwned{RESET}
 """
     )
 
