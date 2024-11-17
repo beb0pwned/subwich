@@ -52,6 +52,12 @@ def install_tools():
 
     # Download tools that need Go to download
     print(f"\n{BOLD_GREEN}Installing tools using go...{RESET}\n")
+    os.system(f'echo export PATH=$HOME/go/bin >> $home/.bashrc')
+    os.system(f'echo export PATH=$HOME/go/bin >> $home/.zshrc')
+
+    os.system(f'source $home/.bashrc')
+    os.system(f'source $home/.zshrc')
+    
     for tool in go_tools:
         tool_name = tool[0]
         download_url  = tool[1]
