@@ -84,7 +84,7 @@ def main():
         with open(f"{url}/final.txt", 'a') as f:
             f.write(amass_output)
 
-        print(f"{BOLD_TEAL}[+] Probing for alive domains with httpx...{RESET}")
+        print(f"{BOLD_MAGENTA}[+] Probing for alive domains with httpx...{RESET}")
         httpx_output = run_command(f"cat {url}/final.txt | httpx -sc -td -ip")
         with open(f"{url}/alive.txt", 'w') as f:
             f.write(httpx_output)
@@ -123,7 +123,7 @@ def main():
                             ext_file.write(line + '\n')
 
         print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
-        run_command(f"nmap -iL {url}/ips.txt -T4 -oA {url}/nmap")
+        run_command(f"nmap -oA {url}/nmap -iL {url}/ips.txt -T4 ")
 
         print(f"{BOLD_GREEN}\n[+] Reconnaissance complete!{RESET}")
 

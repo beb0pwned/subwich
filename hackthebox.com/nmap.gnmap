@@ -1,0 +1,74 @@
+# Nmap 7.94SVN scan initiated Sun Nov 17 13:17:35 2024 as: nmap -iL hackthebox.com/ips.txt -T4 -oA hackthebox.com/nmap
+Host: 109.176.239.70 ()	Status: Up
+Host: 109.176.239.70 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///	Ignored State: filtered (997)
+Host: 151.101.194.133 ()	Status: Up
+Host: 151.101.194.133 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///	Ignored State: filtered (997)
+Host: 23.22.90.252 (ec2-23-22-90-252.compute-1.amazonaws.com)	Status: Up
+Host: 23.22.90.252 (ec2-23-22-90-252.compute-1.amazonaws.com)	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///	Ignored State: filtered (997)
+Host: 199.60.103.29 ()	Status: Up
+Host: 199.60.103.29 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///	Ignored State: filtered (997)
+Host: 13.227.37.11 (server-13-227-37-11.msp50.r.cloudfront.net)	Status: Up
+Host: 13.227.37.11 (server-13-227-37-11.msp50.r.cloudfront.net)	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 44.214.112.154 (ec2-44-214-112-154.compute-1.amazonaws.com)	Status: Up
+Host: 44.214.112.154 (ec2-44-214-112-154.compute-1.amazonaws.com)	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 184.104.178.75 ()	Status: Up
+Host: 184.104.178.75 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///	Ignored State: filtered (997)
+Host: 146.190.139.22 ()	Status: Up
+Host: 146.190.139.22 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 167.71.129.232 ()	Status: Up
+Host: 167.71.129.232 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.70 ()	Status: Up
+Host: 109.176.239.70 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 199.60.103.29 ()	Status: Up
+Host: 199.60.103.29 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 146.190.139.22 ()	Status: Up
+Host: 146.190.139.22 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.70 ()	Status: Up
+Host: 109.176.239.70 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 146.190.139.22 ()	Status: Up
+Host: 146.190.139.22 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.70 ()	Status: Up
+Host: 109.176.239.70 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 146.190.139.22 ()	Status: Up
+Host: 146.190.139.22 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 146.190.139.22 ()	Status: Up
+Host: 146.190.139.22 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+Host: 109.176.239.69 ()	Status: Up
+Host: 109.176.239.69 ()	Ports: 80/open/tcp//http///, 113/closed/tcp//ident///, 443/open/tcp//https///, 8010/open/tcp//xmpp///	Ignored State: filtered (996)
+# Nmap done at Sun Nov 17 13:19:34 2024 -- 36 IP addresses (36 hosts up) scanned in 119.58 seconds
