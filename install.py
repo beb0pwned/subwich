@@ -6,6 +6,7 @@ GREEN = "\033[92m"
 MAGENTA = "\033[95m"
 BOLD_GREEN = "\033[1;92m"
 BOLD_RED = "\033[1;91m"
+BOLD_ORANGE = "\033[1;93m"
 RESET = "\033[0m"
 
 prerequisites = [
@@ -73,6 +74,7 @@ def install_tools():
 def main():
     try:
         install_tools()
+        print(f'{BOLD_ORANGE}Installtion complete.{RESET}')
     except KeyboardInterrupt:
         print(f'{BOLD_RED}User stopped installation.\n\nExitting...{RESET}')
     except Exception as e:
