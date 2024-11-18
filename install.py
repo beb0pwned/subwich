@@ -15,6 +15,7 @@ prerequisites = [
 
 tools = [
     'nmap',
+    'snapd'
 ]
 
 snap_tools = [
