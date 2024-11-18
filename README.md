@@ -5,6 +5,10 @@ Subdomain enumeration tool
 Automate recon for bug bounties
 - Note: Please ensure that Go is properly installed on your system for this tool to function correctly.
 
+## Requirements
+- snap
+- go
+
 ## Installation
 - `python3 install.py`
 
