@@ -12,6 +12,7 @@ RESET = "\033[0m"
 prerequisites = [
     'libpcap-dev',
     'linux-headers-generic',
+    'libc6',
 ]
 
 tools = [
