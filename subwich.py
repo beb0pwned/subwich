@@ -1,4 +1,4 @@
-#TODO: Fix nmap output; 
+#TODO: Add -isubs flag that checks for important subdomains; 
 import sys
 import os
 import subprocess
@@ -51,12 +51,11 @@ def main():
     try:
         parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
         parser.add_argument("-d", "--domain", help="Target domain")
-        parser.add_argument("-w", action='store_true', help="Enables scraping WaybackURLs Note: Needs to be used with -d")
+        parser.add_argument("-w", action='store_true', help="Scrape WaybackURLs")
         parser.add_argument("-isubs",help="Extract subdomains from a list that contain test, dev, admin")
         args = parser.parse_args()
 
         # Display help if no domain is provided or -h flag is used
-
         if args.domain:
             #print(f"\n{BOLD_RED}Please provide a domain.{RESET}")
             #help()
@@ -71,17 +70,17 @@ def main():
             create_dir(f"{url}/wayback/extensions")
 
             print(f"{BOLD_TEAL}[+] Harvesting subdomains for {url} with subfinder...{RESET}")
-            subfinder_output = os.system(f"sudo subfinder -d {url}")
+            subfinder_output = run_command(f"sudo subfinder -d {url}")
             with open(f"{url}/final.txt", 'w') as f:
                 f.write(subfinder_output)
 
             print(f"{BOLD_TEAL}[+] Checking for more subdomains with assetfinder...{RESET}")
-            assetfinder_output = os.system(f"sudo assetfinder {url}")
+            assetfinder_output = run_command(f"sudo assetfinder {url}")
             with open(f"{url}/final.txt", 'a') as f:
                 f.write(assetfinder_output)
 
             print(f"{BOLD_TEAL}[+] Checking for even more subdomains with amass...{RESET}")
-            amass_output = os.system(f"sudo amass enum -d {url}")
+            amass_output = run_command(f"sudo amass enum -d {url}")
             with open(f"{url}/final.txt", 'a') as f:
                 f.write(amass_output)
 
@@ -124,7 +123,7 @@ def main():
                                 ext_file.write(line + '\n')
 
             print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
-            run_command(f'mkdir {url}/nmap; cd {url}/nmap;nmap -oA nmap -iL {url}/ips.txt -T4; cd ../..')
+            run_command(f"nmap -oA {url}/nmap -iL {url}/ips.txt -T4 ")
 
             print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
@@ -159,9 +158,9 @@ def main():
                 with open("juice_subs.txt", "w") as f:
                     for goodsubs in important_subs:
                         f.writelines(f"{goodsubs}\n")
-        
-        else:
-            help()
+
+
+
 
     except KeyboardInterrupt:
         print(f'\n{BOLD_RED}Installation interrupted by user.{RESET}')
