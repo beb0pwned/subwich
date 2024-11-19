@@ -70,17 +70,17 @@ def main():
             create_dir(f"{url}/wayback/extensions")
 
             print(f"{BOLD_TEAL}[+] Harvesting subdomains for {url} with subfinder...{RESET}")
-            subfinder_output = run_command(f"sudo subfinder -d {url}")
+            subfinder_output = os.system(f"sudo subfinder -d {url}")
             with open(f"{url}/final.txt", 'w') as f:
                 f.write(subfinder_output)
 
             print(f"{BOLD_TEAL}[+] Checking for more subdomains with assetfinder...{RESET}")
-            assetfinder_output = run_command(f"sudo assetfinder {url}")
+            assetfinder_output = os.system(f"sudo assetfinder {url}")
             with open(f"{url}/final.txt", 'a') as f:
                 f.write(assetfinder_output)
 
             print(f"{BOLD_TEAL}[+] Checking for even more subdomains with amass...{RESET}")
-            amass_output = run_command(f"sudo amass enum -d {url}")
+            amass_output = os.system(f"sudo amass enum -d {url}")
             with open(f"{url}/final.txt", 'a') as f:
                 f.write(amass_output)
 
