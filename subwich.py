@@ -49,6 +49,10 @@ def run_command(command):
 
 def main():
     try:
+        # Check if the script is being run with sudo privs
+        if os.getuid() != 0:
+            print(f'{BOLD_RED}Please use sudo.{RESET}')
+
         parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
         parser.add_argument("-d", "--domain", help="Target domain")
         parser.add_argument("-w", action='store_true', help="Scrape WaybackURLs")
