@@ -74,7 +74,7 @@ def main():
             create_dir(f"{url}/wayback/extensions")
 
             print(f"{BOLD_TEAL}[+] Harvesting subdomains for {url} with subfinder...{RESET}")
-            subfinder_output = run_command(f"subfinder -d {url}")
+            subfinder_output = run_command(f"subfinder -d {url} -v")
             with open(f"{url}/final.txt", 'w') as f:
                 f.write(subfinder_output)
 
@@ -103,7 +103,8 @@ def main():
                 domain_file.write(domains)
 
             print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
-            run_command(f"subjack -w {url}/final.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 > {url}/potential_takeovers.txt")
+            run_command(f"subjack -w {url}/final.txt -t 100 -timeout 30 -ssl -c /go/pkg/mod/github.com/haccer/subjack@v0.0.0-20201112041112-49c51e57deab/fingerprints.json
+                         -v 3 > {url}/potential_takeovers.txt")
 
             if args.w:
                 print(f"{BOLD_TEAL}[+] Scraping wayback data...{RESET}")
