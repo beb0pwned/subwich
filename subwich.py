@@ -103,8 +103,7 @@ def main():
                 domain_file.write(domains)
 
             print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
-            run_command(f"subjack -w {url}/final.txt -t 100 -timeout 30 -ssl -c '/root/go/pkg/mod/github.com/haccer/subjack@v0.0.0-20201112041112-49c51e57deab/fingerprints.json'
-                         -v 3 > {url}/potential_takeovers.txt")
+            run_command(f"subjack -w {url}/final.txt -t 100 -timeout 30 -ssl -c '/root/go/pkg/mod/github.com/haccer/subjack@v0.0.0-20201112041112-49c51e57deab/fingerprints.json' -v 3 > {url}/potential_takeovers.txt")
 
             if args.w:
                 print(f"{BOLD_TEAL}[+] Scraping wayback data...{RESET}")
