@@ -1,4 +1,4 @@
-#TODO: Add -isubs flag that checks for important subdomains; 
+#TODO: Fix nmap output; 
 import sys
 import os
 import subprocess
@@ -51,11 +51,12 @@ def main():
     try:
         parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
         parser.add_argument("-d", "--domain", help="Target domain")
-        parser.add_argument("-w", action='store_true', help="Scrape WaybackURLs")
+        parser.add_argument("-w", action='store_true', help="Enables scraping WaybackURLs Note: Needs to be used with -d")
         parser.add_argument("-isubs",help="Extract subdomains from a list that contain test, dev, admin")
         args = parser.parse_args()
 
         # Display help if no domain is provided or -h flag is used
+
         if args.domain:
             #print(f"\n{BOLD_RED}Please provide a domain.{RESET}")
             #help()
@@ -123,7 +124,7 @@ def main():
                                 ext_file.write(line + '\n')
 
             print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
-            run_command(f"nmap -oA {url}/nmap -iL {url}/ips.txt -T4 ")
+            run_command(f'mkdir {url}/nmap; cd {url}/nmap;nmap -oA nmap -iL {url}/ips.txt -T4; cd ../..')
 
             print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
@@ -158,9 +159,9 @@ def main():
                 with open("juice_subs.txt", "w") as f:
                     for goodsubs in important_subs:
                         f.writelines(f"{goodsubs}\n")
-
-
-
+        
+        else:
+            help()
 
     except KeyboardInterrupt:
         print(f'\n{BOLD_RED}Installation interrupted by user.{RESET}')
