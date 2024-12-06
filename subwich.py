@@ -130,31 +130,20 @@ def main():
 
         # Check for important subdoamins in a .txt file
         elif args.isubs:
+            important_keywords = [
+                        "admin", "dev", "test", "api", "staging", "prod", "beta", "manage", "jira",
+                        "github", "panel", "dashboard", "secure", "alpha", "demo", "sandbox", 
+                        "auth", "login", "git", "monitor", "logs", "billing", "db", "internal"
+                    ]
+
             print(f"{GREEN}Scanning for important subdomains...{RESET}")
             with open(f"{args.isubs}", "r") as f:
                 important_subs = []
                 subdomains = [x.strip() for x in f.readlines()]
-                for subdomain_list in subdomains:
-                    if "admin" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "dev" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "test" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "api" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "staging" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "prod" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "beta" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "manage" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "jira" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
-                    if "github" in subdomain_list:
-                        important_subs.append(f"{subdomain_list}")
+                for subdomain in subdomains:
+                    if any(keyword in subdomain for keyword in important_keywords):
+                        important_subs.append(subdomain)
+
                 for pos, value in enumerate(important_subs):
                     print(f"{TEAL}{pos}: {GREEN}{value}")
                 with open("isubs.txt", "w") as f:
