@@ -107,7 +107,7 @@ def main():
 
             create_dir(f"{url}/nmap")
             print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
-            run_command(f"nmap -oA {url}/nmap/ -iL {url}/ips.txt -T4 ")
+            run_command(f"nmap -oA {url}/nmap/nmap -iL {url}/ips.txt -T4 ")
 
             print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
@@ -128,7 +128,7 @@ def main():
                     for line in wayback_params.splitlines():
                         f.write(line + '=\n')
 
-                print(f"[+]     Extracting files with specific extensions...")
+                print(f"[+] Extracting files with specific extensions...")
                 with open(f"{url}/wayback/wayback.txt", 'r') as wayback_file:
                     for line in wayback_file:
                         line = line.strip()
