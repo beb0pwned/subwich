@@ -66,8 +66,6 @@ def main():
 
             # Create necessary directories
             create_dir(url)
-            create_dir(f"{url}/wayback")
-            create_dir(f"{url}/wayback/extensions")
 
             print(f"{BOLD_TEAL}[+] Harvesting subdomains for {url} with subfinder...{RESET}")
             subfinder_output = run_command(f"subfinder -d {url} -v")
@@ -103,6 +101,10 @@ def main():
 
             # Scrape wayback data if -w flag is toggled
             if args.w:
+                # Create 
+                create_dir(f"{url}/wayback")
+                create_dir(f"{url}/wayback/extensions")
+
                 print(f"{BOLD_TEAL}[+] Scraping wayback data...{RESET}")
                 wayback_output = run_command(f"cat {url}/final.txt | waybackurls")
                 with open(f"{url}/wayback/wayback.txt", 'w') as f:
@@ -137,16 +139,18 @@ def main():
                     ]
 
             print(f"{GREEN}Scanning for important subdomains...{RESET}")
+
             with open(f"{args.isubs}", "r") as f:
                 important_subs = []
                 subdomains = [x.strip() for x in f.readlines()]
+
                 for subdomain in subdomains:
                     if any(keyword in subdomain for keyword in important_keywords):
                         important_subs.append(subdomain)
 
                 for pos, value in enumerate(important_subs):
                     print(f"{TEAL}{pos}: {GREEN}{value}")
-                with open("isubs.txt", "w") as f:
+                with open(f"{url}/isubs.txt", "w") as f:
                     for goodsubs in important_subs:
                         f.writelines(f"{goodsubs}\n")
 
