@@ -17,6 +17,7 @@ BOLD_RED = "\033[1;91m"
 BOLD_MAGENTA = "\033[1;95m"
 BOLD_TEAL = "\033[1;96m"
 
+
 def banner():
     print(f"""{RED}
 ╔═╗┬ ┬┌┐ ┬ ┬┬┌─┐┬ ┬
@@ -56,7 +57,8 @@ def main():
         parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
         parser.add_argument("-d", "--domain", help="Target domain")
         parser.add_argument("-w", action='store_true', help="Enable scraping WaybackURLs. Note: Must be used with -d")
-        parser.add_argument("-isubs",help="Extract subdomains from a list that contain test, dev, admin")
+        parser.add_argument("-isubs", help="Extract subdomains from a list that contain test, dev, admin")
+        parser.add_argument("-skip-amass", action='store_true', help="Skips scanning for subdomains with amass")
         args = parser.parse_args()
 
         
@@ -77,10 +79,14 @@ def main():
             with open(f"{url}/final.txt", 'a') as f:
                 f.write(assetfinder_output)
 
-            print(f"{BOLD_TEAL}[+] Checking for even more subdomains with amass...{RESET}")
-            amass_output = run_command(f"amass enum -d {url}")
-            with open(f"{url}/final.txt", 'a') as f:
-                f.write(amass_output)
+            if not args.skip_amass:
+                print(f"{BOLD_TEAL}[+] Checking for even more subdomains with amass...{RESET}")
+                amass_output = run_command(f"amass enum -d {url}")
+                with open(f"{url}/final.txt", 'a') as f:
+                    f.write(amass_output)
+            else:
+                print(f"{BOLD_ORANGE}[!] Skipping Amass subdomain scan.{RESET}")
+
 
             print(f"{BOLD_MAGENTA}[+] Probing for alive domains with httpx...{RESET}")
             httpx_output = run_command(f"cat {url}/final.txt | httpx -sc -td -ip")
@@ -99,9 +105,15 @@ def main():
             print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
             run_command(f"subjack -w {url}/final.txt -t 100 -timeout 30 -ssl -c '/root/go/pkg/mod/github.com/haccer/subjack@v0.0.0-20201112041112-49c51e57deab/fingerprints.json' -v 3 > {url}/potential_takeovers.txt")
 
+            create_dir(f"{url}/nmap")
+            print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
+            run_command(f"nmap -oA {url}/nmap -iL {url}/ips.txt -T4 ")
+
+            print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
+
             # Scrape wayback data if -w flag is toggled
             if args.w:
-                # Create 
+                # Create necessary directories
                 create_dir(f"{url}/wayback")
                 create_dir(f"{url}/wayback/extensions")
 
@@ -110,7 +122,7 @@ def main():
                 with open(f"{url}/wayback/wayback.txt", 'w') as f:
                     f.write(wayback_output)
 
-                print(f"[+]     Extracting parameters from wayback data...")
+                print(f"[+] Extracting parameters from wayback data...")
                 wayback_params = run_command(f"cat {url}/wayback/wayback.txt | grep '?*=' | cut -d '=' -f 1 | sort -u")
                 with open(f"{url}/wayback/wayback_params.txt", 'w') as f:
                     for line in wayback_params.splitlines():
@@ -124,11 +136,6 @@ def main():
                         if ext in ['js', 'html', 'json', 'php', 'aspx']:
                             with open(f"{url}/wayback/extensions/{ext}.txt", 'a') as ext_file:
                                 ext_file.write(line + '\n')
-
-            print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
-            run_command(f"nmap -oA {url}/nmap -iL {url}/ips.txt -T4 ")
-
-            print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
         # Check for important subdoamins in a .txt file
         elif args.isubs:
