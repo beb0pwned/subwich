@@ -59,12 +59,8 @@ def main():
         parser.add_argument("-isubs",help="Extract subdomains from a list that contain test, dev, admin")
         args = parser.parse_args()
 
-        # Display help if no domain is provided or -h flag is used
+        
         if args.domain:
-            #print(f"\n{BOLD_RED}Please provide a domain.{RESET}")
-            #help()
-            #sys.exit(1)
-
             banner()
             url = args.domain
 
@@ -105,6 +101,7 @@ def main():
             print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
             run_command(f"subjack -w {url}/final.txt -t 100 -timeout 30 -ssl -c '/root/go/pkg/mod/github.com/haccer/subjack@v0.0.0-20201112041112-49c51e57deab/fingerprints.json' -v 3 > {url}/potential_takeovers.txt")
 
+            # Scrape wayback data if -w flag is toggled
             if args.w:
                 print(f"{BOLD_TEAL}[+] Scraping wayback data...{RESET}")
                 wayback_output = run_command(f"cat {url}/final.txt | waybackurls")
@@ -131,6 +128,7 @@ def main():
 
             print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
+        # Check for important subdoamins in a .txt file
         elif args.isubs:
             print(f"{GREEN}Scanning for important subdomains...{RESET}")
             with open(f"{args.isubs}", "r") as f:
@@ -163,7 +161,11 @@ def main():
                     for goodsubs in important_subs:
                         f.writelines(f"{goodsubs}\n")
 
-
+        # Display help if no domain is provided or -h flag is used
+        else:
+            print(f"\n{BOLD_RED}Please provide a domain.{RESET}")
+            help()
+            sys.exit(1)
 
 
     except KeyboardInterrupt:
