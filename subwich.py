@@ -159,7 +159,7 @@ def main():
                         important_subs.append(f"{subdomain_list}")
                 for pos, value in enumerate(important_subs):
                     print(f"{TEAL}{pos}: {GREEN}{value}")
-                with open("juice_subs.txt", "w") as f:
+                with open("isubs.txt", "w") as f:
                     for goodsubs in important_subs:
                         f.writelines(f"{goodsubs}\n")
 
