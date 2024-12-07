@@ -57,7 +57,7 @@ def main():
         parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
         parser.add_argument("-d", "--domain", help="Target domain")
         parser.add_argument("-w", action='store_true', help="Enable scraping WaybackURLs. Note: Must be used with -d")
-        parser.add_argument("-isubs", help="Extract subdomains from a list that contain test, dev, admin")
+        parser.add_argument("-isubs", help="Extract subdomains from a list that contain test, dev, admin, etc...")
         parser.add_argument("-skip-amass", action='store_true', help="Skips scanning for subdomains with amass")
         args = parser.parse_args()
 
