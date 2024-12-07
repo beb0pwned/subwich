@@ -1,4 +1,4 @@
-#TODO: Add -isubs flag that checks for important subdomains; 
+#TODO: 
 import sys
 import os
 import subprocess
@@ -105,11 +105,7 @@ def main():
             print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
             run_command(f"subjack -w {url}/final.txt -t 100 -timeout 30 -ssl -c '/root/go/pkg/mod/github.com/haccer/subjack@v0.0.0-20201112041112-49c51e57deab/fingerprints.json' -v 3 > {url}/potential_takeovers.txt")
 
-            create_dir(f"{url}/nmap")
-            print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
-            run_command(f"nmap -oA {url}/nmap/nmap -iL {url}/ips.txt -T4 ")
-
-            print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
+            
 
             # Scrape wayback data if -w flag is toggled
             if args.w:
@@ -136,6 +132,12 @@ def main():
                         if ext in ['js', 'html', 'json', 'php', 'aspx']:
                             with open(f"{url}/wayback/extensions/{ext}.txt", 'a') as ext_file:
                                 ext_file.write(line + '\n')
+            
+            create_dir(f"{url}/nmap")
+            print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
+            run_command(f"nmap -oA {url}/nmap/nmap -iL {url}/ips.txt -T4 ")
+
+            print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
         # Check for important subdoamins in a .txt file
         elif args.isubs:
