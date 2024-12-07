@@ -13,7 +13,7 @@ Automate recon for bug bounties
 - `python3 install.py`
 
 ## Usage
-Note: Must be in the format of "domain.com" or "this.domain.com" etc..
+Note: Must be in the format of "domain.com" or "this.domain.com" etc.. DO NOT add the protocol ex. https://domain.com
 - `python3 subwich.py <domain>`
 - `-w` will enable waybackurls to scrape ex. `python3 subwich.py <domain> -w`
 
