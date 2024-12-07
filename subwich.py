@@ -28,13 +28,6 @@ def banner():
 """
     )
 
-def help():
-    banner()
-    print("\nUsage: python3 subwich.py -d <domain>")
-    print("\nOptions:")
-    print("  -d, --domain <domain>  Specify the target domain")
-    print("  -w           Scrape WaybackURLs")
-    print("  -h           Displays this help message\n")
 
 def create_dir(directory):
     if not os.path.exists(directory):
@@ -162,12 +155,9 @@ def main():
                 with open(f"{url}/isubs.txt", "w") as f:
                     for goodsubs in important_subs:
                         f.writelines(f"{goodsubs}\n")
-
-        # Display help if no domain is provided or -h flag is used
         else:
-            print(f"\n{BOLD_RED}Please provide a domain.{RESET}")
-            help()
-            sys.exit(1)
+            banner()
+            parser.print_help()
 
 
     except KeyboardInterrupt:
