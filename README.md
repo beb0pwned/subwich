@@ -17,5 +17,5 @@ Note: Must be in the format of "domain.com" or "this.domain.com" etc.. DO NOT ad
 - `python3 subwich.py <domain>`
 - `-w` will enable waybackurls to scrape ex. `python3 subwich.py <domain> -w`
 - `-isubs` will check for important subdomains in a txt file ex. `python3 subwich.py -isubs alive.txt`
-- `-skip-amass` will skip amass subdomain search as amass can take a while, especially on complex domains ex. `python3 subwich.py -d domain.com -skip-amass
+- `-skip-amass` will skip amass subdomain search as amass can take a while, especially on complex domains ex. `python3 subwich.py -d domain.com -skip-amass`
 
