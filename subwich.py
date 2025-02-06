@@ -42,13 +42,21 @@ def run_command(command):
     
 def format_amass(input_file, output_file, output_file_2):
     with open(input_file, "r") as infile, open(output_file, "w") as outfile, open(output_file_2, "w") as outfile_2:
+        pattern_domain_ip = re.compile(r'(\S+\.ch).*?(\d{1,3}(?:\.\d{1,3}){3})')
+        pattern_domain_only = re.compile(r'(\S+\.ch)')
+
         for line in infile:
-            match = re.search(r"([\w.-]+\.\w+)\s+.*\s+(\d+\.\d+\.\d+\.\d+)", line)
-            if match:
-                domain = match.group(1)
-                ip = match.group(2)
-                outfile.write(f"{domain}")
-                outfile_2.write(f"{ip}")
+            match_domain_ip = pattern_domain_ip.search(line)
+            if match_domain_ip:
+                domain = match_domain_ip.group(1)
+                ip = match_domain_ip.group(2)
+                outfile.write(f"{domain}\n")
+                outfile_2.write(f"{ip}\n")
+                continue
+            match_domain_only = pattern_domain_only.findall(line)
+            if match_domain_only:
+                for domain in match_domain_only:
+                    outfile.write(f"{domain}")
 
 def main():
     try:
@@ -83,7 +91,7 @@ def main():
 
             if not args.skip_amass:
                 print(f"{BOLD_TEAL}[+] Checking for even more subdomains with amass...{RESET}")
-                amass_output = run_command(f"amass enum -d {domain} -timeout 60 -o {domain}/amass.txt")
+                amass_output = run_command(f"amass enum -d {domain} -timeout 60 -nf {domain}/final.txt -o {domain}/amass.txt")
                 format_amass(input_file=f"{domain}/amass.txt",output_file=f"{domain}/final.txt",output_file_2=f"{domain}/ips.txt")
                 with open(f"{domain}/final.txt", 'a') as f:
                     f.write(amass_output)
