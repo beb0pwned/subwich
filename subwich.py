@@ -1,4 +1,4 @@
-#TODO: Add important IPs flag that checks for IPs with unique services running ex. sql etc.
+#TODO: Add important IPs flag that checks for IPs with unique services running ex. sql etc.:::: Add cider notation checker for amass
 import re
 import os
 import subprocess
@@ -41,7 +41,7 @@ def run_command(command):
         return ""
     
 def format_amass(input_file, output_file, output_file_2):
-    with open(input_file, "r") as infile, open(output_file, "w") as outfile, open(output_file_2, "w") as outfile_2:
+    with open(input_file, "r") as infile, open(output_file, "a") as outfile, open(output_file_2, "a") as outfile_2:
         pattern_domain_ip = re.compile(r'(\S+\.ch).*?(\d{1,3}(?:\.\d{1,3}){3})')
         pattern_domain_only = re.compile(r'(\S+\.ch)')
 
