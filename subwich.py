@@ -159,7 +159,7 @@ def main():
 
                 for pos, value in enumerate(important_subs):
                     print(f"{TEAL}{pos}: {GREEN}{value}")
-                with open(f"{url}/isubs.txt", "w") as f:
+                with open(f"isubs.txt", "w") as f:
                     for goodsubs in important_subs:
                         f.writelines(f"{goodsubs}\n")
 
@@ -175,5 +175,6 @@ def main():
 
     except Exception as e:
         print(f'{RED}An error occured: {e}{RESET}')
+        
 if __name__ == "__main__":
     main()
