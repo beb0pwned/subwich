@@ -83,7 +83,7 @@ def main():
 
             if not args.skip_amass:
                 print(f"{BOLD_TEAL}[+] Checking for even more subdomains with amass...{RESET}")
-                amass_output = run_command(f"amass enum -d {domain} -timeout 60 >> {domain}/amass.txt")
+                amass_output = run_command(f"amass enum -d {domain} -timeout 60 -o {domain}/amass.txt")
                 format_amass(input_file=f"{domain}/amass.txt",output_file=f"{domain}/final.txt",output_file_2=f"{domain}/ips.txt")
                 with open(f"{domain}/final.txt", 'a') as f:
                     f.write(amass_output)
