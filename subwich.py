@@ -1,4 +1,4 @@
-#TODO: 
+#TODO: Add important IPs flag that checks for IPs with unique services running ex. sql etc.
 import re
 import os
 import subprocess
@@ -106,7 +106,7 @@ def main():
                 domain_file.write(domains)
 
             print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
-            run_command(f"subjack -w {domain}/final.txt -t 100 -timeout 30 -ssl -c '/root/go/pkg/mod/github.com/haccer/subjack@v0.0.0-20201112041112-49c51e57deab/fingerprints.json' -v 3 > {domain}/potential_takeovers.txt")
+            run_command(f"subjack -w {domain}/final.txt -t 100 -timeout 30 -ssl -c 'subjack_fingerprints.json' -v 3 > {domain}/potential_takeovers.txt")
 
             
 
