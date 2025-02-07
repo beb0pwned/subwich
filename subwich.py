@@ -46,7 +46,7 @@ def format_amass(input_file, output_file, output_file_2):
         pattern_domain_only = re.compile(r'(\S+\.ch)')
 
         for line in infile:
-            match_domain_ip = pattern_domain_ip.findall(line)
+            match_domain_ip = pattern_domain_ip.search(line)
             if match_domain_ip:
                 domain = match_domain_ip.group(1)
                 ip = match_domain_ip.group(2)
@@ -56,7 +56,7 @@ def format_amass(input_file, output_file, output_file_2):
             match_domain_only = pattern_domain_only.findall(line)
             if match_domain_only:
                 for domain in match_domain_only:
-                    outfile.write(f"{domain}")
+                    outfile.write(f"{domain}\n")
 
 def main():
     try:
