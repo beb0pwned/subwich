@@ -109,15 +109,13 @@ def main():
             create_dir(domain)
             if args.w and os.path.exists(f'{domain}/final.txt'):
                 print(f"{BOLD_ORANGE}[!] Skipping subdomain scans -> Scans already ran on this domain...{RESET}")
-                print(f"{BOLD_TEAL}[+] Scraping WaybackURLs...{RESET}")
                 wayback(domain=domain)
-
+                print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
             if args.nmap and os.path.exists(f'{domain}/final.txt'):
                 print(f"{BOLD_ORANGE}[!] Skipping subdomain scans -> Scans already ran on this domain...{RESET}")
-                print(f"{BOLD_TEAL}Scanning for open ports using Nmap...{RESET}")
                 nmap_scan(domain=domain)
-
+                print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
             else:  
 
