@@ -158,11 +158,9 @@ def main():
                 run_command(f"subjack -w {domain}/final.txt -t 100 -timeout 30 -ssl -c 'subjack_fingerprints.json' -v 3 > {domain}/potential_takeovers.txt")
                 
                 if args.w:
-                    print(f"{BOLD_TEAL}[+] Scraping WaybackURLs...{RESET}")
                     wayback(domain=domain)
                 
                 if args.nmap:
-                    print(f"{BOLD_TEAL}Scanning for open ports using Nmap...{RESET}")
                     nmap_scan(domain=domain)
 
                 print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
