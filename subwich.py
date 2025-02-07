@@ -45,7 +45,7 @@ def wayback(domain):
     create_dir(f"{domain}/wayback/extensions")
 
     print(f"{BOLD_TEAL}[+] Scraping wayback data...{RESET}")
-    wayback_output = run_command(f"cat {domain}/final.txt | waybackdomains")
+    wayback_output = run_command(f"cat {domain}/final.txt | waybackurls")
     with open(f"{domain}/wayback/wayback.txt", 'w') as f:
         f.write(wayback_output)
 
