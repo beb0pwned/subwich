@@ -39,7 +39,36 @@ def run_command(command):
     except subprocess.CalledProcessError as e:
         print(f"{BOLD_RED}Error executing command: {e}{RESET}")
         return ""
-    
+
+def wayback(domain):
+    create_dir(f"{domain}/wayback")
+    create_dir(f"{domain}/wayback/extensions")
+
+    print(f"{BOLD_TEAL}[+] Scraping wayback data...{RESET}")
+    wayback_output = run_command(f"cat {domain}/final.txt | waybackdomains")
+    with open(f"{domain}/wayback/wayback.txt", 'w') as f:
+        f.write(wayback_output)
+
+    print(f"[+] Extracting parameters from wayback data...")
+    wayback_params = run_command(f"cat {domain}/wayback/wayback.txt | grep '?*=' | cut -d '=' -f 1 | sort -u")
+    with open(f"{domain}/wayback/wayback_params.txt", 'w') as f:
+        for line in wayback_params.splitlines():
+            f.write(line + '=\n')
+
+    print(f"[+] Extracting files with specific extensions...")
+    with open(f"{domain}/wayback/wayback.txt", 'r') as wayback_file:
+        for line in wayback_file:
+            line = line.strip()
+            ext = line.split('.')[-1]
+            if ext in ['js', 'html', 'json', 'php', 'aspx']:
+                with open(f"{domain}/wayback/extensions/{ext}.txt", 'a') as ext_file:
+                    ext_file.write(line + '\n')
+
+def nmap_scan(domain):
+    create_dir(f"{domain}/nmap")
+    print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
+    run_command(f"nmap -oA {domain}/nmap/nmap -iL {domain}/ips.txt -T4 ")
+
 def format_amass(input_file, output_file, output_file_2):
     with open(input_file, "r") as infile, open(output_file, "a") as outfile, open(output_file_2, "a") as outfile_2:
         pattern_domain_ip = re.compile(r'(\S+\.ch).*?(\d{1,3}(?:\.\d{1,3}){3})')
@@ -66,9 +95,10 @@ def main():
 
         parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
         parser.add_argument("-d", "--domain", help="Target domain")
-        parser.add_argument("-w", action='store_true', help="Enable scraping WaybackURLs. Note: Must be used with -d")
+        parser.add_argument("-w", action='store_true', help="Enable scraping WaybackURLs. MUST BE USED WITH -d")
         parser.add_argument("-isubs", help="Extract subdomains from a list that contain test, dev, admin, etc...")
         parser.add_argument("-skip-amass", action='store_true', help="Skips scanning for subdomains with amass")
+        parser.add_argument("-nmap", action="store_true", help="Enables basic nmap scan. ie -oA -T4 -iL. MUST BE USED WITH -d")
         args = parser.parse_args()
 
         
@@ -76,33 +106,19 @@ def main():
             banner()
             domain = args.domain
 
-            # Create necessary directories
             create_dir(domain)
             if args.w and os.path.exists(f'{domain}/final.txt'):
-                print("[!] Skipping subdomain scans -> Scans already ran on this domain...")
-                # Create necessary directories
-                create_dir(f"{domain}/wayback")
-                create_dir(f"{domain}/wayback/extensions")
+                print(f"{BOLD_ORANGE}[!] Skipping subdomain scans -> Scans already ran on this domain...{RESET}")
+                print(f"{BOLD_TEAL}[+] Scraping WaybackURLs...{RESET}")
+                wayback(domain=domain)
 
-                print(f"{BOLD_TEAL}[+] Scraping wayback data...{RESET}")
-                wayback_output = run_command(f"cat {domain}/final.txt | waybackdomains")
-                with open(f"{domain}/wayback/wayback.txt", 'w') as f:
-                    f.write(wayback_output)
 
-                print(f"[+] Extracting parameters from wayback data...")
-                wayback_params = run_command(f"cat {domain}/wayback/wayback.txt | grep '?*=' | cut -d '=' -f 1 | sort -u")
-                with open(f"{domain}/wayback/wayback_params.txt", 'w') as f:
-                    for line in wayback_params.splitlines():
-                        f.write(line + '=\n')
+            if args.nmap and os.path.exists(f'{domain}/final.txt'):
+                print(f"{BOLD_ORANGE}[!] Skipping subdomain scans -> Scans already ran on this domain...{RESET}")
+                print(f"{BOLD_TEAL}Scanning for open ports using Nmap...{RESET}")
+                nmap_scan(domain=domain)
 
-                print(f"[+] Extracting files with specific extensions...")
-                with open(f"{domain}/wayback/wayback.txt", 'r') as wayback_file:
-                    for line in wayback_file:
-                        line = line.strip()
-                        ext = line.split('.')[-1]
-                        if ext in ['js', 'html', 'json', 'php', 'aspx']:
-                            with open(f"{domain}/wayback/extensions/{ext}.txt", 'a') as ext_file:
-                                ext_file.write(line + '\n')
+
             else:  
 
                 print(f"{BOLD_TEAL}[+] Harvesting subdomains for {domain} with subfinder...{RESET}")
@@ -140,13 +156,14 @@ def main():
 
                 print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
                 run_command(f"subjack -w {domain}/final.txt -t 100 -timeout 30 -ssl -c 'subjack_fingerprints.json' -v 3 > {domain}/potential_takeovers.txt")
-
                 
-
-        
-                create_dir(f"{domain}/nmap")
-                print(f"{BOLD_TEAL}[+] Scanning for open ports using Nmap...{RESET}")
-                run_command(f"nmap -oA {domain}/nmap/nmap -iL {domain}/ips.txt -T4 ")
+                if args.w:
+                    print(f"{BOLD_TEAL}[+] Scraping WaybackURLs...{RESET}")
+                    wayback(domain=domain)
+                
+                if args.nmap:
+                    print(f"{BOLD_TEAL}Scanning for open ports using Nmap...{RESET}")
+                    nmap_scan(domain=domain)
 
                 print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
@@ -175,8 +192,6 @@ def main():
                     for goodsubs in important_subs:
                         f.writelines(f"{goodsubs}\n")
 
-
-        
         else:
             banner()
             parser.print_help()
