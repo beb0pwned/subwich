@@ -107,18 +107,10 @@ def main():
             domain = args.domain
 
             create_dir(domain)
-            if args.w and os.path.exists(f'{domain}/final.txt'):
-                print(f"{BOLD_ORANGE}[!] Skipping subdomain scans -> Scans already ran on this domain...{RESET}")
-                wayback(domain=domain)
-                print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
-
-            if args.nmap and os.path.exists(f'{domain}/final.txt'):
-                print(f"{BOLD_ORANGE}[!] Skipping subdomain scans -> Scans already ran on this domain...{RESET}")
-                nmap_scan(domain=domain)
-                print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
+            if (args.w or args.nmap) and os.path.exists(f'{domain}/final.txt'):
+                print(f"{BOLD_ORANGE}[!] Skipping subdomain scans -> Scans already ran on this domain.{RESET}")
 
             else:  
-
                 print(f"{BOLD_TEAL}[+] Harvesting subdomains for {domain} with subfinder...{RESET}")
                 subfinder_output = run_command(f"subfinder -d {domain} -v")
                 with open(f"{domain}/final.txt", 'w') as f:
@@ -155,13 +147,15 @@ def main():
                 print(f"{BOLD_MAGENTA}[+] Checking for possible subdomain takeover...{RESET}")
                 run_command(f"subjack -w {domain}/final.txt -t 100 -timeout 30 -ssl -c 'subjack_fingerprints.json' -v 3 > {domain}/potential_takeovers.txt")
                 
-                if args.w:
-                    wayback(domain=domain)
+            if args.w:
+                wayback(domain=domain)
+                print(f"{BOLD_ORANGE}[+] WaybackURLs scan complete.{RESET}")
                 
-                if args.nmap:
-                    nmap_scan(domain=domain)
+            if args.nmap:
+                nmap_scan(domain=domain)
+                print(f"{BOLD_ORANGE}[+] Nmap scan complete.{RESET}")
 
-                print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
+            print(f"{BOLD_ORANGE}[+] Reconnaissance complete.{RESET}")
 
 
         # Check for important subdoamins in a .txt file
