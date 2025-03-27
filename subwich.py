@@ -86,12 +86,7 @@ def format_amass(input_file, output_file, output_file_2):
                     outfile.write(f"{domain}\n")
 
 def main():
-    try:
-        # Check if the script is being run with sudo privs
-        if os.getuid() != 0:
-            print(f'{BOLD_RED}Please use sudo.{RESET}')
-            quit()
-            
+    try: 
 
         parser = argparse.ArgumentParser(description="Domain Enumeration and Recon Tool")
         parser.add_argument("-d", "--domain", help="Target domain")
