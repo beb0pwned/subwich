@@ -11,6 +11,7 @@ Automate recon for bug bounties
 
 ## Installation
 - `python3 install.py`
+- Run the following command `sudo chown -R $(whoami) subwich/ ` -> This changes ownership of all files in the subwich/ directory to your user so you don’t need sudo to run the script or write to its files.
 
 ## Example Usage
 Note: Must be in the format of "domain.com" or "this.domain.com" etc.. DO NOT add the protocol ex. https://domain.com
