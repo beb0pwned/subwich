@@ -1,4 +1,4 @@
-#TODO: Add important IPs flag that checks for IPs with unique services running ex. sql etc.:::: Add cider notation checker for amass
+#TODO: Add important IPs flag that checks for IPs with unique services running ex. sql etc.:::: Add cidr notation checker for amass
 import re
 import os
 import subprocess
