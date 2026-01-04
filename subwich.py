@@ -51,7 +51,7 @@ def wayback(domain):
     wayback_params = run_command(f"cat {domain}/wayback/wayback.txt | grep '?*=' | cut -d '=' -f 1 | sort -u")
     with open(f"{domain}/wayback/wayback_params.txt", 'w') as f:
         for line in wayback_params.splitlines():
-            f.write(line + '=\n')
+            f.write(line + '\n')
 
     print(f"[+] Extracting files with specific extensions...")
     with open(f"{domain}/wayback/wayback.txt", 'r') as wayback_file:
